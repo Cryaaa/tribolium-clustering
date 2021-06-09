@@ -44,11 +44,10 @@ setup(
         'Development Status :: 3 - Alpha',
 
         # Indicate who your project is intended for
-        'Intended Audience :: Scientists',
-        'Topic :: Developmental Biology :: Image and Data Analysis Tools',
+        
 
         # Pick your license as you wish
-        'License :: OSI Approved :: BSD 3-Clause License',
+        'License :: OSI Approved :: BSD License',
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate you support Python 3. These classifiers are *not*

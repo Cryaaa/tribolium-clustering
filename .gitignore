@@ -1,2 +1,4 @@
 /.ipynb_checkpoints/
 /tribolium_clustering.egg-info/
+/dist/
+/build/
