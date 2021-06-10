@@ -17,7 +17,7 @@ setup(
     
     name='tribolium-clustering',
     
-    version='0.1.0',  
+    version='0.2.0',  
     
     description='A library for image ananalysis and data analysis of Tribolium embryos',  
     
@@ -76,7 +76,8 @@ setup(
 
     python_requires='>=3.7, <3.9',
 
-    install_requires=["umap","hdbscan","numpy", "pyopencl", "toolz", "scikit-image", "requests", "pyclesperanto-prototype==0.7.0", "napari==0.4.5", "napari_pyclesperanto_assistant==0.7.2","scikit-learn"],  # OTHERS? MAYBE OPENCL OR SOMETHING?
+    install_requires=["seaborn","umap-learn","hdbscan","numpy", "pyopencl", "scikit-image", 
+                      "scikit-learn", "pyclesperanto-prototype == 0.9.1", "pandas"],  
 
     project_urls={ 
         'Bug Reports': 'https://github.com/Cryaaa/tribolium-clustering/issues',
