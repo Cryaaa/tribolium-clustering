@@ -226,6 +226,14 @@ def topology_regionprops(gpu_labelimage, nearest_neigh_list = [4,5,6], local = F
     
     return pd.DataFrame(topology_props)
 
+def add_centroids(regionprops, topologyprops, centroidnamelist = ['centroid-0','centroid-1','centroid-2']):
+    import pandas as pd
+    
+    centroids_list = [regionprops[key] for key in centroidnamelist]
+    centroids_list.append(topologyprops)
+    top_props_wcentroid = pd.concat(centroids_list, axis = 1)
+    
+    return top_props_wcentroid
 
 def regionprops_with_neighborhood_data(labelimage,gpu_labelimage,originalimage, n_closest_points_list = [2,3,4]):
     from skimage.measure import regionprops_table
@@ -482,6 +490,15 @@ def filterregprops_intensity(df_regprops):
 def get_sorted_list_of_regprops_folder(folderpath, filename_prefix, n_timepoints):
     import pandas as pd
     filelist = [folderpath+filename_prefix+str(i)+'.csv' for i in range(n_timepoints)]
+    
+    regpropslist = []
+
+    for propname in filelist:
+        try:
+            regpropslist.append(pd.read_csv(propname))
+        except FileNotFoundError:
+            pass
+
     regpropslist = [pd.read_csv(i) for i in filelist]
     try:
         regpropslist = [i.drop('Unnamed: 0', axis = 1) for i in regpropslist]
@@ -491,7 +508,12 @@ def get_sorted_list_of_regprops_folder(folderpath, filename_prefix, n_timepoints
         regpropslist = [i.drop('prediction', axis = 1) for i in regpropslist]
     except:
         print('No Predictions in Regionprops of {}'.format(folderpath))
-    return regpropslist
+    
+    if regpropslist == []:
+        print('No FIles Opened')
+    
+    else:
+        return regpropslist
 
 def readcsv_as_cl_input(path):
     import pandas as pd
@@ -599,7 +621,7 @@ def generate_parametric_cluster_image(labelimage,gpu_labelimage ,predictionlist)
     gpu_labelimage = None
     clelist = None
     
-    output = cle.pull(parametric_image)
+    output = cle.pull(parametric_image).astype('uint32')
     parametric_image = None
     
     return output
@@ -782,6 +804,25 @@ def plot_horizontal(image_list, title_list = None, size = (20,20)):
         if title_list != None:
             axs[j].set_title(title_list[j])
     plt.show()
+
+def nice_screenshot_lund(viewer_obj):
+    import napari
+    from skimage.transform import rotate
+    from skimage.util import crop
+    from skimage.color import rgba2rgb
+    
+    state = viewer_obj.window.qt_viewer.view.camera.get_state()
+    state['center'] = (-500, -244.56994029525458, -3.7123967014400705)
+    state['scale_factor'] = 650
+
+    viewer_obj.window.qt_viewer.view.camera.set_state(state)
+
+    screenshot = viewer_obj.screenshot()
+
+    screenshot = rotate(screenshot, 355)
+    screenshot = crop(screenshot, ((170, 70), (50, 40), (0,0)), copy=False)
+    
+    return rgba2rgb(screenshot)
 
 # Testingspace
 '''
