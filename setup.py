@@ -17,7 +17,7 @@ setup(
     
     name='tribolium-clustering',
     
-    version='0.2.2',  
+    version='0.2.3',  
     
     description='A library for image ananalysis and data analysis of Tribolium embryos',  
     
