@@ -17,7 +17,7 @@ setup(
     
     name='tribolium-clustering',
     
-    version='0.2.1',  
+    version='0.2.2',  
     
     description='A library for image ananalysis and data analysis of Tribolium embryos',  
     
@@ -72,7 +72,7 @@ setup(
     #
     #   py_modules=["my_module"],
     #
-    packages=find_packages(where='src'),  # Required
+    packages=find_packages(),  # Required
 
     python_requires='>=3.7, <3.9',
 
