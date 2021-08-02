@@ -26,12 +26,13 @@ def local_avg_measurement(measurementlist, gpu_labelimage, measurement_wo_bkgnd 
     temp_loc_val = None
     return loc_val
 
-def local_avg_dataframe(dataframe, gpu_labelimage, measurement_wo_bkgnd = True):
+def local_avg_dataframe(dataframe, gpu_labelimage, measurement_wo_bkgnd = True,
+                        exceptions = ['centroid-0', 'centroid-1', 'centroid-2']):
     import pandas as pd
     
     keylist = dataframe.keys()
     new_keylist = ['local avg '+ key for key in keylist]
-    measurements = [dataframe[key].tolist() for key in keylist]
+    measurements = [dataframe[key].tolist() for key in keylist if key not in exceptions]
     loc_avg_measurements = [local_avg_measurement(measure, gpu_labelimage, measurement_wo_bkgnd = measurement_wo_bkgnd) for measure in measurements]
     gpu_labelimage = None
     loc_avg_dict = {k:v for k,v in zip(new_keylist,loc_avg_measurements)}
