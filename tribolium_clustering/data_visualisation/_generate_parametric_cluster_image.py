@@ -1,7 +1,10 @@
 # function for generating image labelled by clusters given the labelimage and the clusterpredictionlist
-def generate_parametric_cluster_image(labelimage,gpu_labelimage ,predictionlist):
+def generate_parametric_cluster_image(labelimage,gpu_labelimage,predictionlist):
+    
     import numpy as np
     import pyclesperanto_prototype as cle
+    
+    
     # reforming the prediction list this is done to account for cluster labels that start at 0
     # conviniently hdbscan labelling starts at -1 for noise, removing these from the labels
     predictionlist_new = np.array(predictionlist) + 1

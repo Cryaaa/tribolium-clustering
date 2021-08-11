@@ -13,6 +13,6 @@ from ._plot_silhouette_scores_per_sample import plot_silhouette_scores_per_sampl
 
 from ._napari_clusterimage_with_cmap import napari_clusterimage_with_cmap
 
-
+from ._plot_cvi_each_timepoint_3D import plot_cvi_each_timepoint_3D
 
 
