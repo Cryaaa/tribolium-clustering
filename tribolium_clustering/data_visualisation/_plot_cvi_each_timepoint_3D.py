@@ -1,4 +1,22 @@
 def plot_cvi_each_timepoint_3D(cvi_scores_concatenated, timepoints_list, cluster_numbers, cvi_name = '', timepoint_label = 'Timepoints'):
+    '''Plots a 3D plot displaying timepoint indices, cluster numbers and their cluster validation index scores
+    
+    Parameters
+    ----------
+    cvi_scores_concatenated : CVI scores list
+        CVI scores in the form [cvi-t1,...,cvi-tn]2,...,[cvi-t1,...,cvi-tn]k concatenated
+    timepoints_list : list
+        Timepoints used as a list (can also just be indices)
+    cluster_numbers : list
+        cluster numbers used sorted: [2,..,k]
+    cvi_name : string
+        label for the axis of the CVI score 
+    timepoint_label : string
+        label for the timepoint axis
+    
+
+    '''
+    
     import numpy as np
     from matplotlib import pyplot as plt
     from mpl_toolkits.mplot3d import Axes3D
@@ -23,3 +41,4 @@ def plot_cvi_each_timepoint_3D(cvi_scores_concatenated, timepoints_list, cluster
     ax.view_init(elev=20., azim=65)
 
     plt.show()
+
