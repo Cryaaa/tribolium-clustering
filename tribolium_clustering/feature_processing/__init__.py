@@ -1,4 +1,5 @@
 from ._correlating_features import correlating_features
+from ._correlation_filter import correlating_feature_filter
 
 from ._filterregprops_manual import filterregprops_intensity
 from ._filterregprops_manual import filterregprops_shape
