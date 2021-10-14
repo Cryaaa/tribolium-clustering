@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from skimage import io
 from vispy import color
-
+import tribolium_clustering as tc
 
 class processed_dataset:
     def __init__(self, directory_name: str):
@@ -69,6 +69,36 @@ class processed_dataset:
     def cumulative_label_lengths(self):
         return np.insert(np.cumsum(self.label_lengths()),0,0)
 
+    def get_combined_thesis_props_no_correlation(self):
+        thesis_uncorrelating_subselection = ['area', 'bbox_area', 'extent', 'feret_diameter_max', 'max_intensity',
+                                     'mean_intensity', 'min_intensity', 'solidity', 'centroid-0',
+                                     'centroid-1', 'centroid-2', 'image_stdev',
+                                     'avg distance of 6 closest points',
+                                     'stddev distance of 6 closest points', 'touching neighbor count',
+                                     'aspect_ratio']
+        props = tc.min_maj_ax_to_aspectr(self.get_combined_regionprops(),del_min_maj=False)
+        subselection = props[thesis_uncorrelating_subselection]
+    
+        return subselection
+
+    def get_combined_thesis_props(self):
+            thesis_subselection = ['area', 'equivalent_diameter', 'minor_axis_length','major_axis_length','bbox_area', 'extent', 'feret_diameter_max', 'max_intensity',
+                                                'mean_intensity', 'min_intensity', 'solidity', 'centroid-0',
+                                                'centroid-1', 'centroid-2', 'image_stdev',
+                                                'avg distance of 4 closest points',
+                                                'stddev distance of 4 closest points',
+                                                'avg distance of 5 closest points',
+                                                'stddev distance of 5 closest points',
+                                                'avg distance of 6 closest points',
+                                                'stddev distance of 6 closest points', 'touching neighbor count',
+                                                'aspect_ratio'
+                                                ]
+            props = tc.min_maj_ax_to_aspectr(self.get_combined_regionprops(),del_min_maj=False)
+            subselection = props[thesis_subselection]
+        
+            return subselection
+
+
     def cluster_movie(self, preprocessing_function, clusterer, save_data_location, name, napari_label_cmap, interval = 1, start_index = 0):
 
         processed_data = preprocessing_function(self.get_combined_regionprops())
@@ -78,7 +108,6 @@ class processed_dataset:
 
         from qtpy.QtCore import QTimer
         import napari 
-        import tribolium_clustering as tc
         import pyclesperanto_prototype as cle
 
         for i in range(start_index,len(self.timepoints),interval):

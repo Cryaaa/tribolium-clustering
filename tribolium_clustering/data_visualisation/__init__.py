@@ -10,6 +10,7 @@ from ._napari_and_plot_cmap_from_hexcsv import plot_cmap
 from ._plot_predictions_onto_scatter_plot import plot_predictions_onto_scatter_plot
 from ._plot_predictions_onto_UMAP import plot_predictions_onto_UMAP
 from ._plot_silhouette_scores_per_sample import plot_silhouette_scores_per_sample
+from ._plot_features_of_two_subgroups import plot_features_of_two_subgroups
 
 from ._napari_clusterimage_with_cmap import napari_clusterimage_with_cmap
 
