@@ -77,7 +77,8 @@ setup(
     python_requires='>=3.7, <3.10',
 
     install_requires=["seaborn","umap-learn","hdbscan","numpy", "pyopencl", "scikit-image", 
-                      "scikit-learn", "pyclesperanto-prototype", "pandas",'pywebview','PySimpleGUI'],  
+                      "scikit-learn", "pyclesperanto-prototype", "pandas",'pywebview','PySimpleGUI',
+                      "pythonnet==3.0.0a2", "vispy"],  
 
     project_urls={ 
         'Bug Reports': 'https://github.com/Cryaaa/tribolium-clustering/issues',
