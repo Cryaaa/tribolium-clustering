@@ -13,7 +13,7 @@ def regionprops_with_neighborhood_data(labelimage,gpu_labelimage,originalimage, 
     
     # get region properties from labels
     regionprops = regionprops_table(labelimage.astype(dtype = 'uint16'), intensity_image= originalimage, 
-                                        properties= ('area', 'centroid','feret_diameter_max',
+                                        properties= ('label','area', 'centroid','feret_diameter_max',
                                         'major_axis_length','minor_axis_length', 'solidity', 'mean_intensity',
                                         'max_intensity', 'min_intensity'),extra_properties=[image_stdev])
     print('Scikit Regionprops Done')
